@@ -1,15 +1,10 @@
 "use strict";
 
-// Selectors
-
-const todoInput = document.querySelector(".todo-input");
-const todoButton = document.querySelector(".todo-btn");
-const todoList = document.querySelector(".todo-list");
-const filterOption = document.querySelector(".filter-todo");
+import { todoInput, todoList } from "./Selectors.js";
 
 // Functions
 
-const addTodo = function (event) {
+export const addTodo = function (event) {
   // Prevent form from submitting
   event.preventDefault();
   //   Todo Div
@@ -38,7 +33,7 @@ const addTodo = function (event) {
 };
 
 // Listener for clicks to delete or check
-const deleteCheck = function (e) {
+export const deleteCheck = function (e) {
   const item = e.target;
   // Delete todo
 
@@ -58,7 +53,7 @@ const deleteCheck = function (e) {
 
 // Filter Function
 
-const filterTodo = function (e) {
+export const filterTodo = function (e) {
   const todos = todoList.childNodes;
   todos.forEach(function (todo) {
     switch (e.target.value) {
@@ -82,9 +77,3 @@ const filterTodo = function (e) {
     }
   });
 };
-
-// Event Listeners
-
-todoButton.addEventListener("click", addTodo);
-todoList.addEventListener("click", deleteCheck);
-filterOption.addEventListener("click", filterTodo);
