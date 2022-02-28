@@ -9,7 +9,9 @@ body {
   color: azure;
   font-family: "Poppins", sans-serif;
 }
-
+.fas {
+  line-height: 1.13;
+}
 header {
   font-size: 1.5rem;
 }
