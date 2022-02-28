@@ -1,5 +1,5 @@
 "use strict";
-
+import "./styles/App.css";
 import { addTodo, deleteCheck, filterTodo } from "./Functions.js";
 import { filterOption, todoButton, todoList } from "./Selectors.js";
 
