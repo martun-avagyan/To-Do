@@ -1,20 +1,29 @@
 const { appendFile } = require("fs");
 const path = require("path");
-const MiniCssExtractPlugin = require("mini-css-extract-plugin");
 const { CleanWebpackPlugin } = require("clean-webpack-plugin");
 const HtmlWebpackPlugin = require("html-webpack-plugin");
 module.exports = {
   entry: "./src/App.js",
   output: {
-    filename: "App[contenthash].js",
+    filename: "App.js",
     path: path.resolve(__dirname, "dist"),
   },
-  mode: "none",
+  mode: "development",
+  devServer: {
+    port: 9000,
+    static: {
+      directory: path.resolve(__dirname),
+    },
+    devMiddleware: {
+      index: "index.html",
+      writeToDisk: true,
+    },
+  },
   module: {
     rules: [
       {
         test: /\.css/, // All css files
-        use: [MiniCssExtractPlugin.loader, "css-loader"], // Webpack reads from right to left, "style-loader" - for bundling css with js
+        use: ["style-loader", "css-loader"], // Webpack reads from right to left, "style-loader" - for bundling css with js
       },
       {
         test: /\.hbs$/,
@@ -34,9 +43,6 @@ module.exports = {
     ],
   },
   plugins: [
-    new MiniCssExtractPlugin({
-      filename: "App[contenthash].css",
-    }),
     new CleanWebpackPlugin(),
     new HtmlWebpackPlugin({
       //     inject: false,
